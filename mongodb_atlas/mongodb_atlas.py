@@ -130,7 +130,7 @@ class MongoDB(object):
             # Version
             try:
                 data['version'] = output['version']
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             try:
@@ -168,7 +168,7 @@ class MongoDB(object):
                     'metrics', 'document', 'updated')
                 data['Fsynclocked'] = output['fsynclocked']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # Stats
@@ -180,7 +180,7 @@ class MongoDB(object):
                 data['Stats Index Size'] = stats['indexSize']
                 data['Stats Data Size'] = stats['dataSize']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # Memory
@@ -190,7 +190,7 @@ class MongoDB(object):
                 data['Memory Mapped'] = output['mem']['mapped']
                 data['Memory Bits'] = output['mem']['bits']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
             # oplatencies
             try:
@@ -198,7 +198,7 @@ class MongoDB(object):
                 data['OpLatencies Writes Latency'] = output['opLatencies']['writes']['latency']
                 data['OpLatencies Commands Latency'] = output['opLatencies']['commands']['latency']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # WiredTiger
@@ -211,7 +211,7 @@ class MongoDB(object):
                 data['Concurrent Transactions Write Out'] = output['wiredTiger']['concurrentTransactions']['write']['out']
                 data['Concurrent Transactions Write Total Tickets'] = output['wiredTiger']['concurrentTransactions']['write']['totalTickets']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # Metrics.cursor
@@ -221,7 +221,7 @@ class MongoDB(object):
                 data['Metrics cursor Open Pinned'] = output['metrics']['cursor']['open']['pinned']
                 data['Metrics cursor Open Total'] = output['metrics']['cursor']['open']['total']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # Connections
@@ -230,7 +230,7 @@ class MongoDB(object):
                 data['Connections Available'] = output['connections']['available']
                 data['Total Connections Created'] = output['connections']['totalCreated']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             try:
@@ -238,7 +238,7 @@ class MongoDB(object):
                     (float(output['extra_info']['heap_usage_bytes'])/(1024*1024)), 2)
                 data['Total Page Faults'] = output['extra_info']['page_faults']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # flushing
@@ -248,7 +248,7 @@ class MongoDB(object):
                 data['seconds_since_lastflush'] = delta.seconds
                 data['last_flush_length'] = output['backgroundFlushing']['last_ms']
                 data['flush_length_avrg'] = output['backgroundFlushing']['average_ms']
-            except KeyError as ex:
+            except KeyError:
                 pass
 
             # Cursors
@@ -256,7 +256,7 @@ class MongoDB(object):
                 data['Cursors Total Open'] = output['cursors']['totalOpen']
                 data['Cursors Timedout'] = output['cursors']['timedOut']
 
-            except KeyError as ex:
+            except KeyError:
                 pass
 
         except Exception:
